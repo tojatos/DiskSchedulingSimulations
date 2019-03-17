@@ -10,11 +10,15 @@ namespace SOLab2
         public const int MinBlock = 1;
         public const int MaxBlock = 10000;
         public const int StartingBlock = MaxBlock / 2;
-        private const int TestSeries = 1;
-        private const int RequestsPerSimulation = 10;
+        private const int TestSeries = 100;
+        private const int RequestsPerSimulation = 50;
         private static readonly Random Random = new Random();
         public static void Main()
         {
+            var fcfsTimes = new List<double>();
+            var sstfTimes = new List<double>();
+            var scanTimes = new List<double>();
+            var cscanTimes = new List<double>();
             try
             {
                 var fcfs = new Fcfs();
@@ -26,21 +30,29 @@ namespace SOLab2
                     List<Request> requests = GenerateRequests(RequestsPerSimulation);
                     
                     fcfs.Simulate(requests);
+                    fcfsTimes.Add(GetAverageWaitingTime(requests));
                     //Print(requests.OrderBy(r => r.ArrivalTime).ToList());
                     Reset(requests);
                     
                     sstf.Simulate(requests);
+                    sstfTimes.Add(GetAverageWaitingTime(requests));
                     //Print(requests.OrderBy(r => r.CompletionTime).ToList());
                     Reset(requests);
                     
                     scan.Simulate(requests);
+                    scanTimes.Add(GetAverageWaitingTime(requests));
                     //Print(requests.OrderBy(r => r.CompletionTime).ToList());
                     Reset(requests);
                     
                     cscan.Simulate(requests);
+                    cscanTimes.Add(GetAverageWaitingTime(requests));
                     //Print(requests.OrderBy(r => r.CompletionTime).ToList());
                     Reset(requests);
                 }
+                Console.WriteLine($"FCFS average waiting time:{fcfsTimes.Average()}");
+                Console.WriteLine($"SSTF average waiting time:{sstfTimes.Average()}");
+                Console.WriteLine($"SCAN average waiting time:{scanTimes.Average()}");
+                Console.WriteLine($"CSCAN average waiting time:{cscanTimes.Average()}");
 
             }
             catch (Exception e)

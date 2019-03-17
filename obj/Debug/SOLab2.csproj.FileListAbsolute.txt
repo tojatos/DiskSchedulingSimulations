@@ -1,0 +1,6 @@
+/home/tojatos/Scripts/SOLab2/bin/Debug/SOLab2.exe
+/home/tojatos/Scripts/SOLab2/bin/Debug/SOLab2.pdb
+/home/tojatos/Scripts/SOLab2/obj/Debug/SOLab2.csprojResolveAssemblyReference.cache
+/home/tojatos/Scripts/SOLab2/obj/Debug/SOLab2.csproj.CoreCompileInputs.cache
+/home/tojatos/Scripts/SOLab2/obj/Debug/SOLab2.exe
+/home/tojatos/Scripts/SOLab2/obj/Debug/SOLab2.pdb

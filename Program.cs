@@ -20,6 +20,7 @@ namespace SOLab2
                 var fcfs = new Fcfs();
                 var sstf = new Sstf();
                 var scan = new Scan();
+                var cscan = new Cscan();
                 for (int i = 0; i < TestSeries; ++i)
                 {
                     List<Request> requests = GenerateRequests(RequestsPerSimulation);
@@ -29,11 +30,15 @@ namespace SOLab2
                     Reset(requests);
                     
                     sstf.Simulate(requests);
-                    //Print(requests.OrderBy(r => r.ArrivalTime).ToList());
+                    //Print(requests.OrderBy(r => r.CompletionTime).ToList());
                     Reset(requests);
                     
                     scan.Simulate(requests);
-                    Print(requests.OrderBy(r => r.ArrivalTime).ToList());
+                    //Print(requests.OrderBy(r => r.CompletionTime).ToList());
+                    Reset(requests);
+                    
+                    cscan.Simulate(requests);
+                    //Print(requests.OrderBy(r => r.CompletionTime).ToList());
                     Reset(requests);
                 }
 
@@ -55,11 +60,10 @@ namespace SOLab2
         private static void Reset(List<Request> requests) => requests.ForEach(r => r.Reset());
         private static void Print(List<Request> requests)
         {
-            const string formatString = "|{0,3}|{1,5}|{2,7}|{3,7}";
+            const string formatString = "|{0,3}|{1,5}|{2,7}|{3,10}|{4,7}";
             
-            Console.WriteLine(formatString, "Id", "Block", "Arrival", "Waiting");
-            requests.ForEach(p => Console.WriteLine(formatString, p.Id, p.Block, p.ArrivalTime, p.WaitingTime));
-            
+            Console.WriteLine(formatString, "Id", "Block", "Arrival", "Completion", "Waiting");
+            requests.ForEach(p => Console.WriteLine(formatString, p.Id, p.Block, p.ArrivalTime, p.CompletionTime, p.WaitingTime));
         } 
     }
 }

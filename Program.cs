@@ -18,11 +18,16 @@ namespace SOLab2
             try
             {
                 var fcfs = new Fcfs();
+                var sstf = new Sstf();
                 for (int i = 0; i < TestSeries; ++i)
                 {
                     List<Request> requests = GenerateRequests(RequestsPerSimulation);
                     
                     fcfs.Simulate(requests);
+                    //Print(requests.OrderBy(r => r.ArrivalTime).ToList());
+                    Reset(requests);
+                    
+                    sstf.Simulate(requests);
                     Print(requests.OrderBy(r => r.ArrivalTime).ToList());
                     Reset(requests);
                 }

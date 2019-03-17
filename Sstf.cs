@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SOLab2
 {
-    public class Fcfs : ISimulation<Request>
+    public class Sstf : ISimulation<Request>
     {
         public void Simulate(List<Request> requests)
         {
@@ -19,6 +19,7 @@ namespace SOLab2
                     requestsQueue.Enqueue(r);
                 });
                 if(!requestsQueue.Any()) continue;
+                requestsQueue = new Queue<Request>(requestsQueue.OrderBy(r => r.SeekTime(currentBlock)));
                 while (requestsQueue.Any())
                 {
                     Request request = requestsQueue.Peek();
@@ -33,7 +34,7 @@ namespace SOLab2
                 //move pointer
                 currentBlock += currentBlock - requestsQueue.Peek().Block > 0 ? -1 : 1;
             }
-            if(requests.Any(r => !r.IsCompleted)) throw new Exception("FCFS simulation failed");
+            if(requests.Any(r => !r.IsCompleted)) throw new Exception("SSTF simulation failed");
         }
     }
 }

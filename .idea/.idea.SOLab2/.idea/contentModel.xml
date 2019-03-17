@@ -13,6 +13,7 @@
       <e p="Request.cs" t="Include" />
       <e p="SOLab2.csproj" t="IncludeRecursive" />
       <e p="SOLab2.sln" t="IncludeFlat" />
+      <e p="Sstf.cs" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />

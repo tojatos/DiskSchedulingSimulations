@@ -1,4 +1,6 @@
-﻿namespace SOLab2
+﻿using System;
+
+namespace SOLab2
 {
     public class Request
     {
@@ -9,6 +11,7 @@
         public int CompletionTime { get; private set; }
         public int WaitingTime => CompletionTime - ArrivalTime;
         public bool IsCompleted => CompletionTime != 0;
+        public int SeekTime(int currentBlock) => Math.Abs(currentBlock - Block);
 
         public Request(int id, int block, int arrivalTime)
         {

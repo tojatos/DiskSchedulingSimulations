@@ -41,6 +41,7 @@
     <Compile Include="Cscan.cs" />
     <Compile Include="Edf.cs" />
     <Compile Include="Fcfs.cs" />
+    <Compile Include="FdScan.cs" />
     <Compile Include="IdGenerator.cs" />
     <Compile Include="ISimulation.cs" />
     <Compile Include="Program.cs" />

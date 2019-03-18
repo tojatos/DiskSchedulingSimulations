@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SOLab2
 {
-    public class Edf : ISimulation<Request>
+    public class FdScan : ISimulation<Request>
     {
         public void Simulate(List<Request> requests)
         {
@@ -25,11 +25,14 @@ namespace SOLab2
                     r.Complete(clock, false);
                     requestsList.Remove(r);
                 });
-                if(!requestsList.Any()) continue;
+                if(!requestsList.Any(r => r.CanMeetDeadline(clock, currentBlock))) continue;
                 //move pointer
-                currentBlock += currentBlock - requestsList.OrderBy(r => r.TimeUntilDeadline(clock)).First().Block > 0 ? -1 : 1;
+                currentBlock += currentBlock - requestsList
+                                    .FindAll(r => r.CanMeetDeadline(clock, currentBlock))
+                                    .OrderBy(r => r.TimeUntilDeadline(clock))
+                                    .First().Block > 0 ? -1 : 1;
             }
-            if(requests.Any(r => !r.IsCompleted)) throw new Exception("EDF simulation failed");
+            if(requests.Any(r => !r.IsCompleted)) throw new Exception("FD-SCAN simulation failed");
         }
     }
 }

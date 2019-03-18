@@ -49,10 +49,10 @@ namespace SOLab2
                     //Print(requests.OrderBy(r => r.CompletionTime).ToList());
                     Reset(requests);
                 }
-                Console.WriteLine($"FCFS average waiting time:{fcfsTimes.Average()}");
-                Console.WriteLine($"SSTF average waiting time:{sstfTimes.Average()}");
-                Console.WriteLine($"SCAN average waiting time:{scanTimes.Average()}");
-                Console.WriteLine($"CSCAN average waiting time:{cscanTimes.Average()}");
+                Console.WriteLine($"FCFS average waiting time: {fcfsTimes.Average()}");
+                Console.WriteLine($"SSTF average waiting time: {sstfTimes.Average()}");
+                Console.WriteLine($"SCAN average waiting time: {scanTimes.Average()}");
+                Console.WriteLine($"CSCAN average waiting time: {cscanTimes.Average()}");
 
             }
             catch (Exception e)

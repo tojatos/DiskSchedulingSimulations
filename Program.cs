@@ -19,12 +19,14 @@ namespace SOLab2
             var sstfTimes = new List<double>();
             var scanTimes = new List<double>();
             var cscanTimes = new List<double>();
+            var edfTimes = new List<double>();
             try
             {
                 var fcfs = new Fcfs();
                 var sstf = new Sstf();
                 var scan = new Scan();
                 var cscan = new Cscan();
+                var edf = new Edf();
                 for (int i = 0; i < TestSeries; ++i)
                 {
                     List<Request> requests = GenerateRequests(RequestsPerSimulation);
@@ -48,11 +50,22 @@ namespace SOLab2
                     cscanTimes.Add(GetAverageWaitingTime(requests));
                     //Print(requests.OrderBy(r => r.CompletionTime).ToList());
                     Reset(requests);
+                    
+                    cscan.Simulate(requests);
+                    cscanTimes.Add(GetAverageWaitingTime(requests));
+                    //Print(requests.OrderBy(r => r.CompletionTime).ToList());
+                    Reset(requests);
+                    
+                    edf.Simulate(requests);
+                    edfTimes.Add(GetAverageWaitingTime(requests));
+                    //Print(requests.OrderBy(r => r.CompletionTime).ToList());
+                    Reset(requests);
                 }
                 Console.WriteLine($"FCFS average waiting time: {fcfsTimes.Average()}");
                 Console.WriteLine($"SSTF average waiting time: {sstfTimes.Average()}");
                 Console.WriteLine($"SCAN average waiting time: {scanTimes.Average()}");
                 Console.WriteLine($"CSCAN average waiting time: {cscanTimes.Average()}");
+                Console.WriteLine($"EDF average waiting time: {edfTimes.Average()}");
 
             }
             catch (Exception e)
@@ -66,7 +79,7 @@ namespace SOLab2
 
         private static List<Request> GenerateRequests(int numberOfRequests)
             => Enumerable.Range(0, numberOfRequests).Select(t =>
-                    new Request(IdGenerator.GetNext(), Random.Next(MinBlock, MaxBlock + 1), Random.Next(1, 10000)))
+                    new Request(IdGenerator.GetNext(), Random.Next(MinBlock, MaxBlock + 1), Random.Next(1, 10000), Random.Next(1, 10000)))
                 .ToList();
 
         private static void Reset(List<Request> requests) => requests.ForEach(r => r.Reset());

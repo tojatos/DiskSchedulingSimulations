@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cscan.cs" />
+    <Compile Include="Edf.cs" />
     <Compile Include="Fcfs.cs" />
     <Compile Include="IdGenerator.cs" />
     <Compile Include="ISimulation.cs" />

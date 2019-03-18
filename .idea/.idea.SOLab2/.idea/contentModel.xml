@@ -4,6 +4,7 @@
     <e p="$USER_HOME$/.Rider2018.1/system/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_SOLab2.711490034.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Cscan.cs" t="Include" />
+      <e p="Edf.cs" t="Include" />
       <e p="Fcfs.cs" t="Include" />
       <e p="ISimulation.cs" t="Include" />
       <e p="IdGenerator.cs" t="Include" />
